@@ -8,6 +8,12 @@ services:
       - db
     environment:
       DATABASE_URL: ${DATABASE_URL}
+    command: >
+      sh -c "
+        npx prisma migrate deploy &&
+        npx prisma generate &&
+        node index.js
+      "
 
 volumes:
   db-data:
