@@ -13,11 +13,8 @@ RUN npm install
 # Copia el resto del código de la aplicación
 COPY . .
 
-# Generate Prisma Client
-RUN npx prisma generate
-
 # Expone el puerto en el que la aplicación correrá
 EXPOSE 4000
 
-# Comando para correr la aplicación
-CMD ["node", "index.js"]
+# Comando para iniciar la aplicación
+CMD [ "sh", "-c", "npx prisma migrate deploy && npx prisma generate && node index.js" ]
